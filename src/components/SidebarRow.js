@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // Material UI c
 
 function SidebarRow({ title, Icon, selected }) {
   return (
-    <Container className={`'sidebarRow__icon' ${selected && 'selected'}`}>
+    <Container className={` ${selected && 'selected'}`}>
       <Icon
         style={{
           padding: '10px 20px',
           color: '#606060',
-          hover: { color: 'red' },
         }}
       />
-      <Title>{title}</Title>
+      <Title className={`${selected && 'selected'}`}>{title}</Title>
     </Container>
   );
 }
@@ -22,15 +21,15 @@ export default SidebarRow;
 
 const Container = styled.div`
   display: flex;
-  display: flex;
   align-items: center;
+  cursor: pointer;
   &.selected {
-    background-color: 'lightgray';
+    background-color: lightgray;
+    font-weight: bold;
   }
   &:hover {
-    background-color: 'gray';
     font-weight: bold;
-    cursor: pointer;
+    background-color: gray;
   }
 `;
 
@@ -40,7 +39,11 @@ const Title = styled.h1`
   margin-left: 20px;
   font-weight: 500;
   font-size: 12px;
-  color: 'gray';
+  color: gray;
+  &.selected {
+    font-weight: bold;
+  }
   &:hover {
+    font-weight: bold;
   }
 `;

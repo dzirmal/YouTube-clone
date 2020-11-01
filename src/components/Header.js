@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Material UI
@@ -10,6 +11,8 @@ import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 function Header() {
+  const [inputSearch, setInputSearch] = useState('');
+
   return (
     <Container>
       <Left>
@@ -19,21 +22,30 @@ function Header() {
             marginRight: '10px',
           }}
         />
-        <Logo
-          src='http://pngimg.com/uploads/youtube/youtube_PNG7.png'
-          alt='youTube loge'
-        />
+        <Link to='/'>
+          <Logo
+            src='http://pngimg.com/uploads/youtube/youtube_PNG7.png'
+            alt='youTube loge'
+          />
+        </Link>
       </Left>
       <Center>
-        <Input type='text' placeholder='Search' />
-        <SearchIcon
-          style={{
-            border: '1px solid lightGrey',
-            width: '50px',
-            color: 'gray',
-            backgroundColor: '#fafafa',
-          }}
+        <Input
+          value={inputSearch}
+          onChange={(e) => setInputSearch(e.target.value)}
+          type='text'
+          placeholder='Search'
         />
+        <Link to={`/search/${inputSearch}`}>
+          <SearchIcon
+            style={{
+              borderLeft: '1px solid lightGrey',
+              width: '50px',
+              color: 'gray',
+              backgroundColor: '#fafafa',
+            }}
+          />
+        </Link>
       </Center>
       <Right>
         <VideoCallIcon
